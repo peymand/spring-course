@@ -7,9 +7,22 @@
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context.xsd">
 
+    <context:component-scan base-package="com.peyman.spring.context"/>
+
+<!--    <bean name="student" class="com.peyman.spring.context.Student" scope="singleton" init-method="init">-->
+
+<!--        <property name="name" value="ali"/>-->
+<!--        <property name="book" ref="historyBook" />-->
+
+<!--    </bean>-->
 
 
-    <bean name="student" class="com.peyman.spring.conext.Student"/>
+<!--    <bean name="book" class="com.peyman.spring.context.Book" abstract="true"/> -->
+<!--        -->
+<!--        -->
+<!--    <bean name="historyBook" class="com.peyman.spring.context.HistoryBook"/>-->
 
-
+    <bean name="logger" class="org.apache.log4j.Logger">
+        <constructor-arg name="name" value="logger"/>
+    </bean>
 </beans>
