@@ -23,8 +23,8 @@ public class ProductRestService {
     List<ProductDTO> list = new ArrayList<ProductDTO>()
     {
         {
-            add(new ProductDTO(102,"glass",1000));
-            add(new ProductDTO(21,"mobile",2000));
+//            add(new ProductDTO(102,"glass",1000 , "home"));
+//            add(new ProductDTO(21,"mobile",2000 , ""));
         }
     };
 

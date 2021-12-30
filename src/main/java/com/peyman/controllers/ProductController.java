@@ -21,19 +21,19 @@ public class ProductController {
     List<ProductDTO> list = new ArrayList<ProductDTO>()
     {
         {
-            add(new ProductDTO(102,"glass",1000));
-            add(new ProductDTO(21,"mobile",2000));
+            add(new ProductDTO(102,"glass",1000, "home"));
+            add(new ProductDTO(21,"mobile",2000 , "work"));
         }
     };
 
     Logger logger = Logger.getLogger(ProductController.class);
 
     @GetMapping("/show")
-    public String show(){
+    public String show(@ModelAttribute("dto") ProductDTO productDTO){
         return "product-show";
     }
     @PostMapping(value = "/save")
-    public String save(ProductDTO productDTO){
+    public String save(@ModelAttribute("dto") ProductDTO productDTO){
         SecureRandom random = new SecureRandom();
         productDTO.setId(random.nextInt(1000));
         list.add(productDTO);
