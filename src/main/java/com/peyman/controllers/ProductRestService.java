@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.peyman.entities.Product;
 import com.peyman.models.ProductDTO;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +19,9 @@ import java.util.List;
 @RequestMapping("/product/rest")
 public class ProductRestService {
 
-    Logger logger = Logger.getLogger(ProductRestService.class);
+    @Autowired
+    Logger logger;
+
 
     List<ProductDTO> list = new ArrayList<ProductDTO>()
     {

@@ -3,6 +3,7 @@ package com.peyman.controllers;
 import com.peyman.entities.Product;
 import com.peyman.models.ProductDTO;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +27,8 @@ public class ProductController {
         }
     };
 
-    Logger logger = Logger.getLogger(ProductController.class);
+    @Autowired
+    Logger logger;
 
     @GetMapping("/show")
     public String show(@ModelAttribute("dto") ProductDTO productDTO){
@@ -62,8 +64,4 @@ public class ProductController {
         //TODO: get the product and add it to model and the dispatch it to the view
         return "product-detail";
     }
-
-
-
-
 }
