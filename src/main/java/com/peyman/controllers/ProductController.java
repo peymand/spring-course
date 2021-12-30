@@ -23,7 +23,7 @@ public class ProductController {
 
         logger.debug(productDTO);
         //
-        return "redirect:/index";
+        return "redirect:/";
     }
 
 }
