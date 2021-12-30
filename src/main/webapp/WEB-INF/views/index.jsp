@@ -11,6 +11,6 @@
     <title>Title</title>
 </head>
 <body>
-
+    <a href="/product/show">Add Product</a>
 </body>
 </html>
