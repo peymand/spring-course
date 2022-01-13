@@ -1,19 +1,13 @@
 package com.peyman.controllers;
 
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.peyman.entities.Product;
 import com.peyman.models.ProductDTO;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.*;
-
-import java.awt.*;
-import java.util.ArrayList;
-import java.util.List;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/product/rest")
@@ -22,22 +16,12 @@ public class ProductRestService {
     @Autowired
     Logger logger;
 
-
-    List<ProductDTO> list = new ArrayList<ProductDTO>()
-    {
-        {
-//            add(new ProductDTO(102,"glass",1000 , "home"));
-//            add(new ProductDTO(21,"mobile",2000 , ""));
-        }
-    };
-
-
-    @GetMapping(value = "/detail/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseStatus(code = HttpStatus.ACCEPTED)
-    public ProductDTO detailWithPathParam(@PathVariable("id") int id) throws JsonProcessingException {
+    @GetMapping(value = "/get/{id}" , produces = MediaType.APPLICATION_JSON_VALUE)
+    public ProductDTO get(@PathVariable("id") int id){
         logger.debug(id);
-        //TODO: get the product and add it to model and the dispatch it to the view
-
-        return list.get(0);
+        ProductDTO dto = new ProductDTO(1,"Glass", 1000, "Home");
+        return dto;
     }
+
+
 }

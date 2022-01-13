@@ -30,6 +30,8 @@ public class ProductController {
     @Autowired
     Logger logger;
 
+//    Logger logger = Logger.getLogger(ProductController.class);
+
     @GetMapping("/show")
     public String show(@ModelAttribute("dto") ProductDTO productDTO){
         return "product-show";

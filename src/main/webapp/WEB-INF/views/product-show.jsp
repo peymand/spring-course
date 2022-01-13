@@ -13,12 +13,6 @@
 </head>
 <body>
 
-<%--<form action="" method="post">--%>
-<%--    Name : <input name="name" type="text"/> <br/> <br/>--%>
-<%--    Price : <input name="price" type="text"/> <br/> <br/>--%>
-<%--    Type:--%>
-<%--    <input type="submit" value="add product"/>--%>
-<%--</form>--%>
 
 <form:form action="/product/save" method="post" modelAttribute="dto">
     Name: <form:input path="name" /> <br/> <br/>
