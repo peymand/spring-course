@@ -1,19 +1,22 @@
 package com.peyman.controllers;
 
-import com.peyman.entities.Product;
 import com.peyman.models.ProductDTO;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import java.security.SecureRandom;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 @Controller
 @RequestMapping("/product")
@@ -30,6 +33,9 @@ public class ProductController {
     @Autowired
     Logger logger;
 
+    @Autowired
+    MessageSource messageSource;
+
 //    Logger logger = Logger.getLogger(ProductController.class);
 
     @GetMapping("/show")
@@ -37,7 +43,14 @@ public class ProductController {
         return "product-show";
     }
     @PostMapping(value = "/save")
-    public String save(@ModelAttribute("dto") ProductDTO productDTO){
+    public String save(HttpServletRequest r, @ModelAttribute("dto") @Valid ProductDTO productDTO, BindingResult result, Locale locale){
+//
+//        messageSource.getMessage( "error.name" , new Locale(locale.getLanguage()));
+
+
+        if(result.hasErrors()){
+            return "product-show";
+        }
         SecureRandom random = new SecureRandom();
         productDTO.setId(random.nextInt(1000));
         list.add(productDTO);
