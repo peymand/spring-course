@@ -74,12 +74,29 @@
             <version>1.2.17</version>
         </dependency>
 
+        <!-- ORM dependecies -->
 
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
             <version>5.6.1.Final</version>
         </dependency>
+
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.27</version>
+        </dependency>
+
+        <!--    ORM End    -->
 
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
