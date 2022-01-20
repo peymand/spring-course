@@ -1,6 +1,7 @@
 package com.peyman.config;
 
 import org.apache.log4j.Logger;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.InjectionPoint;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -21,7 +22,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
 @Configuration
-@ComponentScan("com.peyman.controllers")
+@ComponentScan(basePackages = {"com.peyman.data" , "com.peyman.services", "com.peyman.controllers"})
 @EnableWebMvc
 
 public class WebConfig implements WebMvcConfigurer {
@@ -80,5 +81,14 @@ public class WebConfig implements WebMvcConfigurer {
     @Bean
     public LocaleResolver localeResolver(){
         return new CookieLocaleResolver();
+    }
+
+    @Bean
+    public ModelMapper modelMapper(){
+        ModelMapper mapper = new ModelMapper();
+        mapper.getConfiguration()
+                .setFieldMatchingEnabled(true)
+                .setFieldAccessLevel(org.modelmapper.config.Configuration.AccessLevel.PRIVATE);
+        return mapper;
     }
 }

@@ -26,7 +26,7 @@
                 <td>${productDTO.price}</td>
 <%--                <td><a href="/product/detail?id=${productDTO.id}"><img style="width: 20px; height: 20px" src="/resource/img/product.png"/></a></td>--%>
                 <td><a href="/product/detail/${productDTO.id}"><img style="width: 20px; height: 20px" src="/resource/img/product.png"/></a></td>
-                <td>X</td>
+                <td><a href="/product/delete?id=${productDTO.id}"><img style="width: 20px; height: 20px" src="/resource/img/delete-icon.png"/></a></td>
                 <td>E</td>
         </tr>
     </c:forEach>

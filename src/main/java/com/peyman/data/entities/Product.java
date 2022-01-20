@@ -1,4 +1,4 @@
-package com.peyman.entities;
+package com.peyman.data.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,6 +23,9 @@ public class Product {
 
     @Column
     private String price;
+
+    @Column
+    private String color;
 
     private Date createDate;
     private Date UpdateDate;

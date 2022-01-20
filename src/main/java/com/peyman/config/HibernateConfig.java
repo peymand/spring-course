@@ -32,7 +32,7 @@ public class HibernateConfig {
     public LocalSessionFactoryBean sessionFactory(DataSource ds){
         LocalSessionFactoryBean factoryBean = new LocalSessionFactoryBean();
         factoryBean.setDataSource(ds);
-        factoryBean.setPackagesToScan(new String[]{ "com.peyman.entities"});
+        factoryBean.setPackagesToScan(new String[]{ "com.peyman.data.entities"});
         factoryBean.setHibernateProperties(hibernateProperties());
         return factoryBean;
     }
