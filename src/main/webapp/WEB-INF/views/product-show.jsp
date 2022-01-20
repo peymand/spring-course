@@ -14,15 +14,15 @@
 </head>
 <body>
 
-<h2><mvc:message code="product.add" /> </h2>
+<h2><mvc:message code="product.add"  /> </h2>
 
 <a href="?lang=en">EN</a>
 <a href="?lang=fa">FA</a>
 <form:form action="/product/save" method="post" modelAttribute="dto">
 
-    Name: <form:input path="name" /> <br/> <br/>
+    <mvc:message code="form.product.name"/>: <form:input path="name" /> <br/> <br/>
     <form:errors path="name" cssStyle="color: red"/>
-    Price : <form:input path="price"/> <br/> <br/>
+    <mvc:message code="form.product.price"/> : <form:input path="price"/> <br/> <br/>
     <form:errors path="price" cssStyle="color: red"/>
     <br/>
     <br/>
