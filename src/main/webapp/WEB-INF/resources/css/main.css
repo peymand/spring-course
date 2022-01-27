@@ -1,0 +1,636 @@
+/*! HTML5 Boilerplate v5.3.0 | MIT License | https://html5boilerplate.com/ */
+
+/*
+ * What follows is the result of much research on cross-browser styling.
+ * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
+ * Kroc Camen, and the H5BP dev community and team.
+ */
+
+/* ==========================================================================
+   Base styles: opinionated defaults
+   ========================================================================== */
+
+html {
+    color: #222;
+    font-size: 1em;
+    line-height: 1.4;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    font-family: 'Roboto Slab', serif;
+   
+
+}
+
+
+header.headsection.navbar-fixed-top{
+   position: relative;
+}
+
+/*
+ * Remove text-shadow in selection highlight:
+ * https://twitter.com/miketaylr/status/12228805301
+ *
+ * These selection rule sets have to be separate.
+ * Customize the background color to match your design.
+ */
+
+::-moz-selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+::selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+/*
+ * A better looking default horizontal rule
+ */
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+ul{
+   margin: 0;
+   padding: 0;
+}
+
+/*
+ * Remove the gap between audio, canvas, iframes,
+ * images, videos and the bottom of their containers:
+ * https://github.com/h5bp/html5-boilerplate/issues/440
+ */
+
+audio,
+canvas,
+iframe,
+img,
+svg,
+video {
+    vertical-align: middle;
+}
+
+/*
+ * Remove default fieldset styles.
+ */
+
+fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+/*
+ * Allow only vertical resizing of textareas.
+ */
+
+textarea {
+    resize: vertical;
+}
+
+/* ==========================================================================
+   Browser Upgrade Prompt
+   ========================================================================== */
+
+.browserupgrade {
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
+}
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ==========================================================================
+   Helper classes
+   ========================================================================== */
+
+/*
+ * Hide visually and from screen readers
+ */
+
+.hidden {
+    display: none !important;
+}
+
+/*
+ * Hide only visually, but have it available for screen readers:
+ * http://snook.ca/archives/html_and_css/hiding-content-for-accessibility
+ */
+
+.visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+/*
+ * Extends the .visuallyhidden class to allow the element
+ * to be focusable when navigated to via the keyboard:
+ * https://www.drupal.org/node/897638
+ */
+
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus {
+    clip: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    position: static;
+    width: auto;
+}
+
+/*
+ * Hide visually and from screen readers, but maintain layout
+ */
+
+.invisible {
+    visibility: hidden;
+}
+
+/*
+ * Clearfix: contain floats
+ *
+ * For modern browsers
+ * 1. The space content is one way to avoid an Opera bug when the
+ *    `contenteditable` attribute is included anywhere else in the document.
+ *    Otherwise it causes space to appear at the top and bottom of elements
+ *    that receive the `clearfix` class.
+ * 2. The use of `table` rather than `block` is only necessary if using
+ *    `:before` to contain the top-margins of child elements.
+ */
+
+.clearfix:before,
+.clearfix:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+/* ==========================================================================
+   EXAMPLE Media Queries for Responsive Design.
+   These examples override the primary ('mobile first') styles.
+   Modify as content requires.
+   ========================================================================== */
+
+@media only screen and (min-width: 35em) {
+    /* Style adjustments for viewports that meet the condition */
+}
+
+@media print,
+       (-webkit-min-device-pixel-ratio: 1.25),
+       (min-resolution: 1.25dppx),
+       (min-resolution: 120dpi) {
+    /* Style adjustments for high resolution devices */
+}
+
+/* ==========================================================================
+   Print styles.
+   Inlined to avoid the additional HTTP request:
+   http://www.phpied.com/delay-loading-your-print-css/
+   ========================================================================== */
+
+@media print {
+    *,
+    *:before,
+    *:after,
+    *:first-letter,
+    *:first-line {
+        background: transparent !important;
+        color: #000 !important; /* Black prints faster:
+                                   http://www.sanbeiji.com/archives/953 */
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    a,
+    a:visited {
+        text-decoration: underline;
+    }
+
+    a[href]:after {
+        content: " (" attr(href) ")";
+    }
+
+    abbr[title]:after {
+        content: " (" attr(title) ")";
+    }
+
+    /*
+     * Don't show links that are fragment identifiers,
+     * or use the `javascript:` pseudo protocol
+     */
+
+    a[href^="#"]:after,
+    a[href^="javascript:"]:after {
+        content: "";
+    }
+
+    pre,
+    blockquote {
+        border: 1px solid #999;
+        page-break-inside: avoid;
+    }
+
+    /*
+     * Printing Tables:
+     * http://css-discuss.incutio.com/wiki/Printing_Tables
+     */
+
+    thead {
+        display: table-header-group;
+    }
+
+    tr,
+    img {
+        page-break-inside: avoid;
+    }
+
+    img {
+        max-width: 100% !important;
+    }
+
+    p,
+    h2,
+    h3 {
+        orphans: 3;
+        widows: 3;
+    }
+
+    h2,
+    h3 {
+        page-break-after: avoid;
+    }
+}
+
+
+
+
+
+/*  CSS START HERE   */
+
+
+/* LOGO STYLE */
+.navbartop {
+   position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 20;
+      width: 100%;
+       margin: auto;
+}
+.logo{
+    width: 30px;
+    height: auto;
+    margin-top: -5px;
+}
+.nabtop {
+   margin-top: 0;
+}
+
+.container-wrapper{
+	
+	height: 80%;
+	margin: auto;
+	margin-top: 80px;
+	/* margin-bottom: 300px; */
+	
+}
+
+
+.form-layout{
+	
+	margin:auto;
+	margin-top:100px;
+    width: 60%;
+   
+}
+.title{
+	text-align: center;
+}
+.table {
+    table-layout: fixed;
+    overflow: auto;
+}
+
+.table th {
+    text-align: center;
+}
+
+.table td {
+    text-align: center;
+    background: whitesmoke;
+
+   
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.productList-heading{
+	width: 80%;
+}
+
+.Product-category {
+    color: #00cc7a;
+    text-align: center;
+    background-color: #000000;
+}
+
+
+
+
+.productImage{
+	margin-top: 10px;
+	width: 100%;
+	height: auto;
+	
+}
+
+.productColumn{
+	height: 200px;
+}
+
+.product-single{
+	 border: 1px solid #ddd7d7;
+	 text-align: center;
+	 margin-bottom: 10px;
+	 margin-right: 5px;
+}
+
+.product-desc{
+
+	margin-bottom: 10px;
+	
+	background-color: #edecec;
+}
+.product-desc a{
+	margin-bottom: 5px;
+}
+
+.product-desc h2{
+	    color: #18C9D2;
+}
+
+.product-desc h3{
+	color: rgb(13, 89, 208);
+    /* font-size: 1.1em; */
+    font-weight: 900;
+}
+
+.product-details{
+	     margin-top:16px;
+	     border: 1px solid #aebbbb;
+	     width: 600px;
+}
+
+.product-details .desc-title{
+	color: #18C9D2;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.product-details p{
+	color: #18CA17;
+	font-size: 15px;
+    font-size: 15px;
+    
+}
+.image{
+	margin-right: 45px;
+	margin-top: 15px;
+}
+
+.image img {
+    -webkit-transition: all 1s ease; /* Safari and Chrome */
+    -moz-transition: all 1s ease; /* Firefox */
+    -ms-transition: all 1s ease; /* IE 9 */
+    -o-transition: all 1s ease; /* Opera */
+    transition: all 1s ease;
+}
+.image:hover img {
+	
+    -webkit-transform:scale(1.15); /* Safari and Chrome */
+    -moz-transform:scale(1.15); /* Firefox */
+    -ms-transform:scale(1.15); /* IE 9 */
+    -o-transform:scale(1.15); /* Opera */
+     transform:scale(1.15);
+     
+    
+}
+
+.message{
+	border: 2px solid  #808000;
+	margin-bottom: 100px;
+}
+
+.message .info{
+	margin: 15px;
+	
+	word-wrap: break-word;
+	
+}
+
+.message .operation{
+	
+	margin-left: 10px;
+	margin-bottom: 16px;
+}
+
+.searchBox{
+	
+	margin-bottom: 40px;
+    margin-left: 20%;
+}
+.no-product{
+	text-align: center;
+    color: crimson;
+    font-size: 42px;
+    margin-left: -159px;
+}
+
+
+/* FOOTER */
+.clientheading {
+   margin-bottom: 60px;
+}
+
+.clientheading h2{
+   background:#51b105;
+   color: #fff;
+   max-width: 500px;
+   margin: 0 auto;
+   font-weight: bold;
+   padding: 8px 8px;
+   text-transform: uppercase;
+}
+
+
+.testimonial {
+   padding: 70px 0;
+}
+
+.clientimg {
+   
+}
+.clientimg img{
+   width: 100%;
+}
+
+.clientSpeech{
+   margin-top: 20px;
+   
+}
+.clientSpeech i{
+   font-size: 50px;
+   color: #E6E6E6;
+   margin-left: 20px;
+}
+.clientSpeech p{
+   color: #8C8B8B;
+   font-size: 20px;
+   text-align: center;
+   
+}
+
+.user1testimonial {
+   margin-bottom: 50px;
+    border: 1px solid #bfaaaa;
+}
+
+.user1testimonial2 {
+   margin-bottom: 50px;
+   border: 1px solid #bfaaaa;
+}
+
+.address {
+   
+   padding: 75px 0;
+}
+
+.addresstitle {
+ padding: 45px;  
+}
+.addresstitle h2{
+ background: #51b105;
+    color: #fff;
+    text-align: center;
+    max-width: 357px;
+    margin: 0 auto;
+    padding: 8px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.showroom {
+   
+}
+
+.showroom i{
+ background: #e6e6e6;
+   font-size: 30px;
+   border-radius: 50px;
+   padding: 10px 14px;
+   color: #fff;
+}
+
+.showroom .contactNum{
+      color: #939292;
+    font-size: 20px;
+   
+}
+.showroom .contactNum span{
+      margin-left: 10px;
+}
+.showroom .contactNum2 span{
+      margin-left: 5px;
+   color: #939292;
+    font-size: 20px;
+}
+
+.social {
+   padding-top: 85px;
+}
+
+.social i{
+   background: #e6e6e6;
+   padding: 10px 20px;
+   font-size: 20px;
+   margin-right: 8px;
+   color: #fff;
+   border-radius: 50px;
+}
+
+.mymap {
+   
+}
+
+ #map {
+      width: 400px;
+      height: 400px;
+    }
+
+.roadno {
+     color: #939292;
+    font-size: 20px;
+    margin-left: 3px;
+   float: right;
+   margin-right: 50px;
+}
+
+
+.foootersection {
+   background: #333;
+   color: #fff;
+   padding: 12px 0;
+}
+
+.foootersection p{
+   font-size: 20px;
+}
+
+
+
+//FONT
+@font-face {
+  font-family: 'Siyam Rupali';
+  src: url('fonts/SiyamRupali.eot?version=1.070');
+  src: local('Siyam Rupali'), url('fonts/SiyamRupali.woff?version=1.070') format('woff'),       url('/resources/fonts/Siyamrupali_1_070ship.ttf') format('truetype');
+  font-style: normal;
+  /* unicode-range: U+0980-09FF; */ /* //Bangla Range (source: http://www.unicode.org/charts/PDF/U0980.pdf‎‎) */
+}
