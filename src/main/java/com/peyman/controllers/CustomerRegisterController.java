@@ -42,6 +42,9 @@ public class CustomerRegisterController {
 		}
 
 		customerService.addCustomer(customer);
+		//TODO: create user based on customer data
+		//TODO: SET Authority as a ROLE_USER and update authority table
+		//TODO : persist user to database with is connected to the customer
 		return "registerCustomerSuccess";
 	}
 	

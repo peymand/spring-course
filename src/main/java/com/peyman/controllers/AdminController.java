@@ -37,7 +37,7 @@ public class AdminController {
     public ModelAndView productManagement(@PathVariable Integer pageNumber,
                                           ModelAndView modelAndView , @RequestParam("searchTerm") String searchTerm) {
         List<Product> products = productService.getAllProductsByBrandOrModelOrCategory(searchTerm);
-        //TODO : fix the getall method
+        //TODO : fix the getall method and make it Asynch
         modelAndView.addObject("products", products);
         modelAndView.setViewName("productInventory");
         return modelAndView;
