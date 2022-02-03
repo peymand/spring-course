@@ -27,47 +27,5 @@ public class ProductController {
 
     ProductService productService;
 
-    @GetMapping("/show")
-    public String show(@ModelAttribute("dto") ProductDTO.CREATE productDTO){
-        return "product-show";
-    }
-    @PostMapping(value = "/save")
-    public String save(HttpServletRequest r, @ModelAttribute("dto") @Valid ProductDTO productDTO, BindingResult result, Locale locale){
-
-
-        if(result.hasErrors()){
-            return "product-show";
-        }
-
-        productService.save(productDTO);
-
-        return "redirect:/";
-    }
-    @GetMapping(value = "/get-all")
-    public ModelAndView getAll(ModelAndView modelAndView){
-        modelAndView.setViewName("product-list");
-        List<ProductDTO> productDTOList =  productService.findAll();
-        modelAndView.addObject("list", productDTOList);
-        return modelAndView;
-    }
-
-    @GetMapping("/detail")
-    public String detailWithQueryString(@RequestParam("id") int dummy){
-        log.debug(dummy);
-        return "product-detail";
-    }
-
-
-    @GetMapping("/detail/{id}")
-    public String detailWithPathParam(@PathVariable("id") int id){
-        log.debug(id);
-        //TODO: get the product and add it to model and the dispatch it to the view
-        return "product-detail";
-    }
-    @GetMapping("/delete")
-    public String delete(ProductDTO.DELETE dto){
-        productService.delete(dto);
-        return "redirect:/product/get-all";
-    }
 
 }

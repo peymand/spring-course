@@ -62,7 +62,7 @@
         
         <footer class="foootersection text-center">
            
-           <p>&copy; Copyright Grren Online Shop 2016</p>
+           <p>&copy; Copyright Grren Online Shop 2022</p>
         </footer>
 
     </div><!-- /.container -->
