@@ -28,7 +28,6 @@
 		         <div class="searchBox">
 		         
 		            <form class="form-inline" action="<c:url value="/admin/productManagement/search/1" />" method="post">
-		             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 					    <div class="form-group">
 					        <label  for="inputEmail">Search more product  :</label>
 					        <input type="text" name="searchTerm" class="form-control" style="width:300px"  id="inputEmail" placeholder="Enter Brand , model or  category name">
@@ -61,7 +60,7 @@
                <tr>
                       
                      
-		              <td><img  style="width:50%"  alt="image" src="<c:url value="/resources/images/${product.productId}.png"/>" /></td>
+		              <td><img  style="width:50%"  alt="image" src="/admin/product/getImage/${product.productId}" /></td>
 		              <td class="success">${product.productName}</td>
 		              <td class="info">${product.productCategory}</td>
 		              <td  class="warning">${product.unitInStock}</td>

@@ -11,7 +11,11 @@ public interface ProductService {
 
     void save(Product dto);
 
-    List<ProductDTO> findAll();
+    List<Product> findAll();
 
     void delete(ProductDTO.DELETE dto);
+
+    Product find(long productId);
+
+    List<Product> getAllProductsByBrandOrModelOrCategory(String searchTerm);
 }

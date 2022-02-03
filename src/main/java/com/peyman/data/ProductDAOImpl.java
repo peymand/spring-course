@@ -46,6 +46,13 @@ public class ProductDAOImpl implements ProductDAO {
         entityManager.flush();
     }
 
+    @Override
+    public Product find(long productId) {
+        Product product = entityManager.find(Product.class, productId);
+        entityManager.close();
+        return product;
+    }
+
     public Session getSession() {
         return sessionFactory.openSession();
     }
