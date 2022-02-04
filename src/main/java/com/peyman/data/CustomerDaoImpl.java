@@ -47,4 +47,10 @@ public class CustomerDaoImpl implements CustomerDao {
     public Customer findCustomerByUsernameAndPassword(String username, String password) {
         return null;
     }
+
+    @Override
+    public void updateCustomer(Customer customer) {
+        entityManager.refresh(customer);
+        entityManager.close();
+    }
 }

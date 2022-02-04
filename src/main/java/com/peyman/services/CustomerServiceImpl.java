@@ -4,6 +4,7 @@ package com.peyman.services;
 import com.peyman.data.CustomerDao;
 import com.peyman.data.entities.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,16 +16,16 @@ public class CustomerServiceImpl implements CustomerService{
 	@Autowired
 	private CustomerDao customerDao;
 	
-//	@Autowired
-//    private PasswordEncoder passwordEncoder;
+	@Autowired
+    private PasswordEncoder passwordEncoder;
 	
 	@Transactional
 	@Override
 	public void addCustomer(Customer customer) {
-//		if(customer.getPassword()!=null){
-//			String pass=customer.getPassword();
-//			customer.setPassword(passwordEncoder.encode(pass));
-//		}
+		if(customer.getPassword()!=null){
+			String pass=customer.getPassword();
+			customer.setPassword(passwordEncoder.encode(pass));
+		}
 		customerDao.save(customer);
 	}
 
@@ -55,9 +56,11 @@ public class CustomerServiceImpl implements CustomerService{
 		
 		return customerDao.findCustomerByUsernameAndPassword(username, password);
 	}
+	@Transactional
+	@Override
+	public void updateCustomer(Customer customer) {
+		customerDao.updateCustomer(customer);
+	}
 
-	
-	
-	
-	
+
 }

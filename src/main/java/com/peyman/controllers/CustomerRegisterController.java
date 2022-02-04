@@ -22,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -39,6 +40,10 @@ public class CustomerRegisterController {
 
 	@GetMapping("/register")
 	public String registerCustomer(@ModelAttribute("customer") Customer customer){
+		customer.setCustomerEmailAddress("a@a.com");
+		customer.setCustometPhoneNumber("09121111111");
+		customer.setCustomerName("dummy");
+
 		return "registerCustomer";
 	}
 
@@ -51,6 +56,9 @@ public class CustomerRegisterController {
 
 
 		List<Customer> customerList=customerService.getAllCustomers();
+
+		 if(customerList == null)
+		 	customerList = new ArrayList<>();
 
 		for (Customer customer2 : customerList) {
 
@@ -93,7 +101,7 @@ public class CustomerRegisterController {
 		cartService.addCart(cart);
 
 		customer.setCart(cart);
-		customerService.addCustomer(customer);
+		customerService.updateCustomer(customer);
 
 
 		autoLogin(customer,request);

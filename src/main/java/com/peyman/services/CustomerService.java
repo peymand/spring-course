@@ -15,4 +15,6 @@ public interface CustomerService {
 	public Customer getCustomerBycustomerId(long customerId);
 	
 	Customer findCustomerByusernameAndpassword(String username, String password);
+
+    void updateCustomer(Customer customer);
 }

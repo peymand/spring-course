@@ -15,4 +15,6 @@ public interface CustomerDao {
 	public Customer findOne(long customerId);
 	
 	Customer findCustomerByUsernameAndPassword(String username, String password);
+
+    void updateCustomer(Customer customer);
 }
