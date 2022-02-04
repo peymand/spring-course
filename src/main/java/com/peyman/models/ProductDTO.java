@@ -53,7 +53,7 @@ public class ProductDTO {
 
     @Data
     public static class DELETE{
-        private int id;
+        private long id;
     }
 
 }

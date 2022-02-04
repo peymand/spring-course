@@ -17,7 +17,7 @@
 	   
 	     
 		<div class="form-layout">
-	       <form:form   action="${pageContext.request.contextPath}/admin/product/addProduct"   method="post" modelAttribute="product"    enctype="multipart/form-data" class="form-horizontal"  >
+	       <form:form   action="${pageContext.request.contextPath}/admin/product/addProduct?${_csrf.parameterName}=${_csrf.token}"   method="post" modelAttribute="product"    enctype="multipart/form-data" class="form-horizontal"  >
 						
 				
 				<div class="row">

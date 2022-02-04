@@ -38,10 +38,10 @@ public class ProductDAOImpl implements ProductDAO {
         }
     }
 
-       @Override
+    @Override
     @Transactional
-    public void delete(int id) {
-        Product product = entityManager.find(Product.class, id);
+    public void delete(long productId) {
+        Product product = entityManager.find(Product.class, productId);
         entityManager.remove(product);
         entityManager.flush();
     }
