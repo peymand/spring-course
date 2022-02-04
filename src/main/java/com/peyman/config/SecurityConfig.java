@@ -43,7 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/admin/**").access("hasRole('ADMIN')")
-                .antMatchers("/customer/**").access("hasRole('USER')")
+//                .antMatchers("/customer/**").access("hasRole('USER')")
                 .and().logout().logoutSuccessUrl("/login?logout")
                 .and().formLogin().loginPage("/login").successHandler(savedRequestAwareAuthenticationSuccessHandler())
                 .loginProcessingUrl("/j_spring_security_check")
