@@ -49,7 +49,7 @@ public class AdminProduct {
     }
 
     @RequestMapping("/product/deleteProduct/{productId}")
-    public String deleteProduct(@PathVariable("productId")ProductDTO.DELETE productId){
+    public String deleteProduct(@PathVariable("productId") long productId){
 
         productService.delete(productId);
 

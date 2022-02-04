@@ -13,7 +13,7 @@ public interface ProductService {
 
     List<Product> findAll();
 
-    void delete(ProductDTO.DELETE dto);
+    void delete(long dto);
 
     Product find(long productId);
 

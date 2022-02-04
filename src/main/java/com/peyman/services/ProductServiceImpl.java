@@ -37,9 +37,9 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void delete(ProductDTO.DELETE dto) {
+    public void delete(long dto) {
         log.info("");
-        productDAO.delete(dto.getId());
+        productDAO.delete(dto);
     }
 
     @Override
