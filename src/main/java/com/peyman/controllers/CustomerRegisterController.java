@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("/customer")
+@RequestMapping("/dummy")
 @AllArgsConstructor
 @Data
 public class CustomerRegisterController {

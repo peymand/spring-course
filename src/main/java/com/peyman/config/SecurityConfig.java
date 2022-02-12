@@ -42,17 +42,36 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
+
                 .antMatchers("/admin/**").access("hasRole('ADMIN')")
                 .antMatchers("/customer/**").access("hasRole('USER')")
-                .and().logout().logoutSuccessUrl("/login?logout")
-                .and().formLogin().loginPage("/login").successHandler(savedRequestAwareAuthenticationSuccessHandler())
+
+                .and()
+
+                .exceptionHandling().accessDeniedPage("/access-denied")
+
+                .and()
+
+                .logout().logoutSuccessUrl("/login?logout")
+
+                .and()
+
+                .formLogin().loginPage("/login").successHandler(savedRequestAwareAuthenticationSuccessHandler())
                 .loginProcessingUrl("/j_spring_security_check")
                 .failureUrl("/login?error")
                 .usernameParameter("username")
                 .passwordParameter("password")
-                .defaultSuccessUrl("/").and()
-                .csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()).and()
-                .rememberMe().key("remember-me").rememberMeParameter("remember-me").rememberMeCookieName("remember-me").tokenRepository(persistentTokenRepository()).tokenValiditySeconds(1209600);
+                .defaultSuccessUrl("/")
+
+                .and()
+
+                .csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+
+                .and()
+
+                .rememberMe().key("remember-me").rememberMeParameter("remember-me").
+                rememberMeCookieName("remember-me").tokenRepository(persistentTokenRepository()).
+                tokenValiditySeconds(1209600);
 
 
     }

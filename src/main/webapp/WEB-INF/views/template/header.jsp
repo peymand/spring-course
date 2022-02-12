@@ -107,7 +107,7 @@
 					    <c:if test="${pageContext.request.userPrincipal.name == null}">
 					          
 					           <li> <a href="<c:url  value="/login"/>"><spring:message code="login.page"/></a>   </li>
-					           <li> <a href="<c:url  value="/customer/register"/>"><spring:message code="register.page"/></a>   </li>
+					           <li> <a href="<c:url  value="/dummy/register"/>"><spring:message code="register.page"/></a>   </li>
 					      </c:if>
 					   
 					    
