@@ -22,13 +22,11 @@ public class HomeController {
     public String home(){
         return "home";
     }
+
+    // http://localhost:8080/login?error
+
     @RequestMapping("/login")
-    public String login(
-            @RequestParam(value="error", required = false)
-                    String error,
-            @RequestParam(value="logout", required = false)
-                    String logout,
-            Model model){
+    public String login(@RequestParam(value="error", required = false) String error,@RequestParam(value="logout", required = false) String logout, Model model){
 
         if(error != null){
             model.addAttribute("error", "Invalid username and password");

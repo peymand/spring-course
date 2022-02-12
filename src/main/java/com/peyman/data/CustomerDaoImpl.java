@@ -35,7 +35,7 @@ public class CustomerDaoImpl implements CustomerDao {
 
     @Override
     public List<Customer> findAll() {
-        return null;
+        return entityManager.createQuery("from Customer").getResultList();
     }
 
     @Override
