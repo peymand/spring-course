@@ -40,9 +40,9 @@ public class CustomerRegisterController {
 
 	@GetMapping("/register")
 	public String registerCustomer(@ModelAttribute("customer") Customer customer){
-		customer.setCustomerEmailAddress("a@a.com");
-		customer.setCustometPhoneNumber("09121111111");
-		customer.setCustomerName("dummy");
+//		customer.setCustomerEmailAddress("a@a.com");
+//		customer.setCustometPhoneNumber("09121111111");
+//		customer.setCustomerName("dummy");
 
 		return "registerCustomer";
 	}
