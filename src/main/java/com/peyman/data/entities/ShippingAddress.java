@@ -1,8 +1,6 @@
 package com.peyman.data.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,7 +9,8 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 @Entity
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class ShippingAddress extends Audit implements Serializable {

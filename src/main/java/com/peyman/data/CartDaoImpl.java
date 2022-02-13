@@ -34,6 +34,6 @@ public class CartDaoImpl implements CartDao {
 
     @Override
     public Cart find(long id) {
-        return null;
+        return entityManager.find(Cart.class,  id);
     }
 }

@@ -53,6 +53,11 @@ public class ProductDAOImpl implements ProductDAO {
         return product;
     }
 
+    @Override
+    public List<Product> getAllProductByCategory(int pageNumber, String productCategory) {
+            return entityManager.createQuery("FROM Product p WHERE p.productCategory = :category").setParameter("category", productCategory).getResultList();
+    }
+
     public Session getSession() {
         return sessionFactory.openSession();
     }

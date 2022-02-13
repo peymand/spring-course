@@ -92,17 +92,17 @@
 				<div class="row">
 			    <label class="col-xs-3 control-label" for="customerName"></label>
 					<div class="col-xs-9">
-				       <form:errors path="custometPhoneNumber" cssStyle="color: #ff0000" />		
+				       <form:errors path="customerPhoneNumber" cssStyle="color: #ff0000" />
 					</div>
 			    
 			    </div>
 				
 				
 				<div class="form-group has-success">
-					<label class="col-xs-3 control-label" for="custometPhoneNumber">Phone Number:</label>
+					<label class="col-xs-3 control-label" for="customerPhoneNumber">Phone Number:</label>
 					<div class="col-xs-9">
 						
-					   <form:input path="custometPhoneNumber" class="form-control" placeholder="Enter Phone Number" id="custometPhoneNumber" />
+					   <form:input path="customerPhoneNumber" class="form-control" placeholder="Enter Phone Number" id="customerPhoneNumber" />
 					</div>
 				</div>
 				

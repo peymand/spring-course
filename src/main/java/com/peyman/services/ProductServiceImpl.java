@@ -51,4 +51,19 @@ public class ProductServiceImpl implements ProductService {
     public List<Product> getAllProductsByBrandOrModelOrCategory(String searchTerm) {
         return null;
     }
+
+    @Override
+    public List<Product> getAllProductByCategory(int pageNumber, String productCategory) {
+        return productDAO.getAllProductByCategory(pageNumber, productCategory);
+    }
+
+    @Override
+    public List<Product> getAllProductByBrandOrModel(int pageNumber, String searchTerm, String productCategory) {
+        return null;
+    }
+
+    @Override
+    public List<Product> getAllProductByBrandOrModelOrCategory(Integer pageNumber, String searchTerm) {
+        return null;
+    }
 }

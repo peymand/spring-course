@@ -1,10 +1,12 @@
 package com.peyman.controllers;
 
 import com.peyman.data.entities.*;
+import com.peyman.exceptions.CustomError;
 import com.peyman.services.AuthoritiesService;
 import com.peyman.services.CartService;
 import com.peyman.services.CustomerService;
 import com.peyman.services.UsersService;
+import com.peyman.validators.PasswordValidator;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,14 +31,14 @@ import java.util.List;
 @RequestMapping("/customer")
 @AllArgsConstructor
 @Data
-public class CustomerRegisterController {
+public class CustomerRegisterController implements HandlerExceptionResolver{
 
 
 	private CustomerService customerService;
 	private UsersService usersService;
 	private CartService cartService;
 	private AuthoritiesService authoritiesService;
-
+	private PasswordValidator passwordValidator;
 
 	@GetMapping("/register")
 	public String registerCustomer(@ModelAttribute("customer") Customer customer){
@@ -128,8 +130,55 @@ public class CustomerRegisterController {
 
 	}
 
-	
-	
-	
+
+	@RequestMapping("/customer/update")
+	public String customerUpdate(){
+
+		return "updateCustomer";
+	}
+
+
+	@RequestMapping(value="/customer/update",method=RequestMethod.POST)
+	public String customerUpdatePost(@RequestParam("username")String username,@RequestParam("password")String password,Model model){
+
+		Customer customer=customerService.findCustomerByusernameAndpassword(username, password);
+
+		if (customer==null) {
+
+			return "updateCustomer";
+		}
+
+		model.addAttribute("customer",customer);
+
+
+		model.addAttribute("update","update");
+		return "registerCustomer";
+	}
+
+
+
+
+
+	public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, Object handler,
+										 Exception ex) {
+		ModelAndView modelAndView=new ModelAndView();
+		CustomError error=new CustomError();
+
+
+		error.setMessage("Your request is not valid.Please Enter a valid request.");
+		modelAndView.addObject("customError", error);
+		modelAndView.setViewName("error_page");
+
+		return modelAndView;
+	}
+
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+		binder.addValidators(passwordValidator);
+	}
+
+
+
+
 
 }

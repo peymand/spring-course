@@ -18,4 +18,10 @@ public interface ProductService {
     Product find(long productId);
 
     List<Product> getAllProductsByBrandOrModelOrCategory(String searchTerm);
+
+    List<Product> getAllProductByCategory(int pageNumber, String productCategory);
+
+    List<Product> getAllProductByBrandOrModel(int pageNumber, String searchTerm, String productCategory);
+
+    List<Product> getAllProductByBrandOrModelOrCategory(Integer pageNumber, String searchTerm);
 }

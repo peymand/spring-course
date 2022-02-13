@@ -41,12 +41,7 @@ public class AdminProduct {
         return "redirect:/admin/productManagement/1";
     }
 
-    @ResponseBody
-    @GetMapping(value = "/product/getImage/{productId}", produces = "image/jpeg")
-    public byte[] getProductImage(@PathVariable("productId") long productId) {
-        Product product = productService.find(productId);
-        return product.getImg();
-    }
+
 
     @RequestMapping("/product/deleteProduct/{productId}")
     public String deleteProduct(@PathVariable("productId") long productId){

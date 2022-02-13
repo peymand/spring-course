@@ -1,5 +1,6 @@
 package com.peyman.data.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -16,7 +17,8 @@ import java.util.List;
 import java.util.Map;
 
 @Entity
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 public class Product extends Audit implements Serializable {
 
@@ -64,7 +66,8 @@ public class Product extends Audit implements Serializable {
     @Transient
     private MultipartFile productImage;
 
-    @OneToMany(mappedBy = "product")
+    @OneToMany(mappedBy="product",cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+    @JsonIgnore
     private List<CartItem> cartItems;
 
     @Transient

@@ -60,7 +60,7 @@
                <tr>
                       
                      
-		              <td><img  style="width:50%"  alt="image" src="/admin/product/getImage/${product.productId}" /></td>
+		              <td><img  style="width:50%"  alt="image" src="/product/getImage/${product.productId}" /></td>
 		              <td class="success">${product.productName}</td>
 		              <td class="info">${product.productCategory}</td>
 		              <td  class="warning">${product.unitInStock}</td>

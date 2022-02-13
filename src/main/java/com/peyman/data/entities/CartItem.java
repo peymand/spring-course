@@ -1,13 +1,13 @@
 package com.peyman.data.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
 @Entity
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class CartItem extends Audit implements Serializable {
@@ -20,6 +20,7 @@ public class CartItem extends Audit implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "cartId")
+    @JsonIgnore
     private Cart cart;
 
     @ManyToOne

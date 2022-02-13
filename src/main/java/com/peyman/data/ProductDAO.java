@@ -15,4 +15,6 @@ public interface ProductDAO {
     void delete(long productId);
 
     Product find(long productId);
+
+    List<Product> getAllProductByCategory(int pageNumber, String productCategory);
 }

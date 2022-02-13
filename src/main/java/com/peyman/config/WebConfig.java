@@ -23,7 +23,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
 @Configuration
-@ComponentScan(basePackages = {"com.peyman.data" , "com.peyman.services", "com.peyman.controllers"})
+@ComponentScan(basePackages = {"com.peyman.data" , "com.peyman.services", "com.peyman.controllers" , "com.peyman.validators"})
 @EnableWebMvc
 
 public class WebConfig implements WebMvcConfigurer {
