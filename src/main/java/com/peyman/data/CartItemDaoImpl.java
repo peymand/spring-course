@@ -36,6 +36,11 @@ public class CartItemDaoImpl implements CartItemDao {
 
     @Override
     public void deleteCartItemById(long cartItemId) {
-
+//        @Query(value="DELETE  FROM cartItem  WHERE cartItemId = :cartItemId ",nativeQuery=true)
+//        entityManager.createNativeQuery("DELETE  FROM cartItem WHERE cartItemId = :cartItemId ")
+//                .setParameter("cartItemId",cartItemId).executeUpdate();
+        CartItem cartItem = entityManager.find(CartItem.class, cartItemId);
+        entityManager.remove(cartItem);
+        entityManager.close();
     }
 }

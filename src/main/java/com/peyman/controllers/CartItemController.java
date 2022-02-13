@@ -41,14 +41,24 @@ public class CartItemController  implements HandlerExceptionResolver {
 	CartItemService cartItemService;
 	//GET CART FOR REST SERVICE
 	@ResponseBody
-	@RequestMapping("/{cartId}")
+	@GetMapping("/{cartId}")
 	public
 	Cart getCartById(@PathVariable("cartId")int cartId){
 		
 		return cartService.getCartById(cartId);
 	}
-	
-	
+
+
+	//REMOVE CART/CLEAR CART
+
+	@DeleteMapping(value="/{cartId}")
+	@ResponseStatus(value= HttpStatus.OK)
+	public void clearCart(@PathVariable(value="cartId")int cartId){
+
+		Cart cart=cartService.getCartById(cartId);
+		cartItemService.removeAllCartItems(cart);
+
+	}
 	
 	
 	
@@ -111,16 +121,7 @@ public class CartItemController  implements HandlerExceptionResolver {
 	}
 	
 	
-	//REMOVE CART/CLEAR CART
-	
-	@RequestMapping(value="/{cartId}",method= RequestMethod.DELETE)
-	@ResponseStatus(value= HttpStatus.OK)
-	public void clearCart(@PathVariable(value="cartId")int cartId){
-		
-		Cart cart=cartService.getCartById(cartId);
-		cartItemService.removeAllCartItems(cart);
-		
-	}
+
 
 	
 	//EXCEPTION HANDLING
