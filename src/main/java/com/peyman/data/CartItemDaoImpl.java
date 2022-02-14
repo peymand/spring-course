@@ -20,7 +20,8 @@ public class CartItemDaoImpl implements CartItemDao {
 
     @Override
     public void save(CartItem cartItem) {
-        entityManager.persist(cartItem);
+//        entityManager.persist(cartItem);
+        entityManager.merge(cartItem);
         entityManager.close();
     }
 

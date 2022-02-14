@@ -1,8 +1,10 @@
 package com.peyman.controllers;
 
 
+import com.peyman.data.entities.Cart;
 import com.peyman.data.entities.Customer;
 import com.peyman.exceptions.CustomError;
+import com.peyman.services.CartService;
 import com.peyman.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -25,12 +27,17 @@ public class CartController implements HandlerExceptionResolver {
 	
 	
 	 @Autowired
-	    private CustomerService customerService;
+	 private CustomerService customerService;
+
+	@Autowired
+	private CartService cartService;
 
 	    @RequestMapping
 	    public String getCart(@AuthenticationPrincipal User activeUser){
 	    	Customer customer = customerService.findCustomerByUsername(activeUser.getUsername());
-	        long cartId = customer.getCart().getCartId();
+//	        long cartId = customer.getCart().getCartId();
+			Cart cart =cartService.getCartById(customer.getCustomerId());
+			long cartId = cart.getCartId();
 
 	        return "redirect:/customer/cart/" + cartId;
 	    }
