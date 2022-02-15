@@ -42,10 +42,4 @@ public class CustomerContactServiceImpl implements CustomerContactService {
 		return customerContactDao.findAll();
 	}
 
-	
-
-	
-
-
-
-}
+	}

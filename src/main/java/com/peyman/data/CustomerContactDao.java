@@ -21,4 +21,6 @@ public interface CustomerContactDao {
     void delete(long customerContactId);
 
     List<CustomerContact> findAll();
+
+
 }

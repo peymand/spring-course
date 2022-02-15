@@ -1,5 +1,6 @@
 package com.peyman.controllers;
 
+import com.peyman.data.entities.Cart;
 import com.peyman.data.entities.Customer;
 import com.peyman.data.entities.CustomerContact;
 import com.peyman.exceptions.CustomError;
@@ -99,6 +100,8 @@ public class HomeController implements HandlerExceptionResolver {
         CustomerContact customerContact=new CustomerContact();
         customerContact.setContactInfo(message);
         customerContact.setCustomer(customer);
+
+
         customerContact.setDate(new Date());
 
         customerContactService.addNewMessage(customerContact);
