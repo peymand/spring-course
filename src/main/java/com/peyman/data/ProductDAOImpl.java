@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.sql.SQLException;
 import java.util.List;
 
 @Repository
@@ -62,5 +63,13 @@ public class ProductDAOImpl implements ProductDAO {
         return sessionFactory.openSession();
     }
 
+    @Override
+    public void update(Product product)  {
+//       Session session = sessionFactory.getCurrentSession();
+//        session.update(product);
+//        session.close();
 
+        entityManager.merge(product);
+        entityManager.close();
+    }
 }

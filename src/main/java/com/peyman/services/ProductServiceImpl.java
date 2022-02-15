@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -37,9 +38,9 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void delete(long dto) {
+    public void delete(long productId) {
         log.info("");
-        productDAO.delete(dto);
+        productDAO.delete(productId);
     }
 
     @Override
@@ -65,5 +66,10 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<Product> getAllProductByBrandOrModelOrCategory(Integer pageNumber, String searchTerm) {
         return null;
+    }
+
+    @Override
+    public void update(Product product) throws SQLException {
+        productDAO.update(product);
     }
 }
