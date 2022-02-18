@@ -68,7 +68,8 @@ public class CartItemController  implements HandlerExceptionResolver {
 	public void addItem(@PathVariable("productId")int productId, @AuthenticationPrincipal User activeUser){
 		
 		Customer customer=customerService.findCustomerByUsername(activeUser.getUsername());
-		Cart cart=customer.getCart();
+//		Cart cart=customer.getCart();
+		Cart cart =cartService.getCartById(customer.getCustomerId());
 		Product product=productService.find(productId);
 		
 		
@@ -82,6 +83,7 @@ public class CartItemController  implements HandlerExceptionResolver {
 		for(int i=0;i<cartItems.size();i++){
 			
 			if (product.getProductId()==cartItems.get(i).getProduct().getProductId()) {
+//		if (product.getProductId()==cartItems.get(i).getProductId()) {
 				CartItem cartItem=cartItems.get(i);
 				cartItem.setQuantity(cartItem.getQuantity()+1);
 				cartItem.setTotalPrice(product.getProductPrice()*cartItem.getQuantity());
