@@ -57,13 +57,12 @@ public class CartItemController  implements HandlerExceptionResolver {
 
 		Cart cart=cartService.getCartById(cartId);
 		cartItemService.removeAllCartItems(cart);
-
+		cartService.getCartById(cartId);
 	}
 	
 	
 	
 	//ADD PRODUCT IN THE CART
-	
 	@RequestMapping(value="/add/{productId}",method= RequestMethod.PUT)
 	@ResponseStatus(value= HttpStatus.NO_CONTENT)
 	public void addItem(@PathVariable("productId")int productId, @AuthenticationPrincipal User activeUser){

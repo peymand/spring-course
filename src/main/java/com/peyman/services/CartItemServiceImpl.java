@@ -34,7 +34,7 @@ public class CartItemServiceImpl implements CartItemService{
 			cartItemDao.deleteCartItemById(cartItem.getCartItemId());
 	}
 
-	
+    @Transactional()
 	@Override
 	public void removeAllCartItems(Cart cart) {
 	

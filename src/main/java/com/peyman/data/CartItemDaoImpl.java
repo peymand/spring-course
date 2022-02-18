@@ -15,7 +15,9 @@ public class CartItemDaoImpl implements CartItemDao {
 
     @Override
     public List<CartItem> findUserByProduct(Product product) {
-        return null;
+        List<CartItem> resultList = entityManager.createQuery("from CartItem c WHERE c.product =:product").setParameter("product", product).getResultList();
+        entityManager.close();
+        return resultList;
     }
 
     @Override
@@ -31,16 +33,15 @@ public class CartItemDaoImpl implements CartItemDao {
 
     @Override
     public List<CartItem> findAllCartItemsBycart(Cart cart) {
-        return null;
+        List<CartItem> resultList = entityManager.createQuery("from CartItem c WHERE c.cart =:cart").setParameter("cart", cart).getResultList();
+        entityManager.close();
+        return resultList;
     }
 
     @Override
     public void deleteCartItemById(long cartItemId) {
-//        @Query(value="DELETE  FROM cartItem  WHERE cartItemId = :cartItemId ",nativeQuery=true)
-//        entityManager.createNativeQuery("DELETE  FROM cartItem WHERE cartItemId = :cartItemId ")
-//                .setParameter("cartItemId",cartItemId).executeUpdate();
-        CartItem cartItem = entityManager.find(CartItem.class, cartItemId);
-        entityManager.remove(cartItem);
-        entityManager.close();
+        entityManager.createNativeQuery("DELETE  FROM cartItem WHERE cartItemId = :cartItemId ")
+                .setParameter("cartItemId",cartItemId).executeUpdate();
+      entityManager.close();
     }
 }
