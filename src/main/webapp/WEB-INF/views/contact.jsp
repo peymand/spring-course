@@ -51,7 +51,7 @@
 					 <br/>         
 					
 					
-					<a class="btn btn-success btn-send" href="<c:url  value="/register"/>"><spring:message code="register.page"  /></a>         
+					<a class="btn btn-success btn-send" href="<c:url  value="/customer/register"/>"><spring:message code="register.page"  /></a>
 			   </c:if>
 			   
 			   <c:if test="${pageContext.request.userPrincipal.name != null}">
