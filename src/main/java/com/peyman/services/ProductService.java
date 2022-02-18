@@ -4,6 +4,7 @@ import com.peyman.data.entities.Product;
 import com.peyman.models.ProductDTO;
 import org.springframework.stereotype.Service;
 
+import java.sql.SQLException;
 import java.util.List;
 
 
@@ -13,7 +14,7 @@ public interface ProductService {
 
     List<Product> findAll();
 
-    void delete(long dto);
+    void delete(long productId);
 
     Product find(long productId);
 
@@ -24,4 +25,6 @@ public interface ProductService {
     List<Product> getAllProductByBrandOrModel(int pageNumber, String searchTerm, String productCategory);
 
     List<Product> getAllProductByBrandOrModelOrCategory(Integer pageNumber, String searchTerm);
+
+    void update(Product dto) throws SQLException;
 }
