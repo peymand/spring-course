@@ -2,25 +2,16 @@ package com.peyman.data;
 
 
 import com.peyman.data.entities.CustomerContact;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-public interface CustomerContactDao {
-    public void addNewMessage(CustomerContact customerContact);
-
-    public void deleteMessageById(long customerContactId);
-
-    public List<CustomerContact> getAllCustomerContact();
+@Repository
+public interface CustomerContactDao extends JpaRepository<CustomerContact , Long> {
 
 
-    List<CustomerContact> getAllCustomerMessage(Integer pageNumber);
 
-    void save(CustomerContact customerContact);
-
-    void delete(long customerContactId);
-
-    List<CustomerContact> findAll();
 
 
 }

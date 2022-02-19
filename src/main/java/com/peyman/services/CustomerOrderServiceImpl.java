@@ -87,14 +87,14 @@ public class CustomerOrderServiceImpl implements CustomerOrderService{
 	@Override
 	public void deleteCustomerOrderById(long customerOrderId) {
 		
-		customerOrderDao.delete(customerOrderId);
+		customerOrderDao.deleteById(customerOrderId);
 		
 	}
 	@Transactional(readOnly = true)
 	@Override
 	public CustomerOrder getCustomerOrderById(long customerOrderId) {
 		
-		return customerOrderDao.find(customerOrderId);
+		return customerOrderDao.findById(customerOrderId).get();
 	}
 	
 

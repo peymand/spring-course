@@ -1,13 +1,14 @@
 package com.peyman.data;
 
 import com.peyman.data.entities.Users;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Repository;
 
 
-
-public interface UsersDao{
+@Repository
+public interface UsersDao extends JpaRepository<Users, Long> {
 
 	Users findUserByusername(String username);
 
-	public void save(Users users);
 }

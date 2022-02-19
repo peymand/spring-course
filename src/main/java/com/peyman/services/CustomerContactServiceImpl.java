@@ -28,13 +28,13 @@ public class CustomerContactServiceImpl implements CustomerContactService {
 	@Override
 	public void deleteMessageById(long customerContactId) {
 		
-		customerContactDao.delete(customerContactId);
+		customerContactDao.deleteById(customerContactId);
 	}
 	@Transactional(readOnly = true)
 	@Override
 	public List<CustomerContact> getAllCustomerContact() {
 		
-		return (List<CustomerContact>) customerContactDao.findAll();
+		return  customerContactDao.findAll();
 	}
 	@Transactional(readOnly = true)
 	@Override

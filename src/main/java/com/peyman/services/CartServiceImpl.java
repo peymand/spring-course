@@ -32,7 +32,7 @@ public class CartServiceImpl implements CartService{
 	   
 		
 		
-		return cartDao.find(cartId);
+		return cartDao.findById(cartId).get();
 	}
 	@Transactional(readOnly = true)
 	@Override

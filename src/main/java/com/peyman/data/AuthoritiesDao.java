@@ -2,12 +2,12 @@ package com.peyman.data;
 
 
 import com.peyman.data.entities.Authorities;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 
-
-public interface AuthoritiesDao{
+@Repository
+public interface AuthoritiesDao extends JpaRepository<Authorities , Long>{
 
 	Authorities findAuthoritiesByusername(String username);
-	void save(Authorities authorities);
 }

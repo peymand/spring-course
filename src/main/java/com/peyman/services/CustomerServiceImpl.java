@@ -47,7 +47,7 @@ public class CustomerServiceImpl implements CustomerService{
 	@Override
 	public Customer getCustomerBycustomerId(long customerId) {
 		
-		return customerDao.findOne(customerId);
+		return customerDao.findById(customerId).get();
 	}
 
 	@Transactional(readOnly = true)
@@ -59,7 +59,7 @@ public class CustomerServiceImpl implements CustomerService{
 	@Transactional
 	@Override
 	public void updateCustomer(Customer customer) {
-		customerDao.updateCustomer(customer);
+		customerDao.save(customer);
 	}
 
 
