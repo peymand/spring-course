@@ -6,6 +6,7 @@ import com.peyman.exceptions.CustomError;
 import com.peyman.services.*;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,7 +24,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/admin")
 @AllArgsConstructor
-public class AdminController implements HandlerExceptionResolver {
+public class AdminController implements HandlerExceptionResolver{
 
     @Autowired
     private ProductService productService;
@@ -50,21 +51,30 @@ public class AdminController implements HandlerExceptionResolver {
 
 
     @RequestMapping("/productManagement/{pageNumber}")
-    public String productManagement(@PathVariable Integer pageNumber, Model model){
+    public String productManagement(@PathVariable Integer pageNumber,Model model){
 
 
-        List<Product> products=productService.findAll();
+        Page<Product> page=productService.getAllProduct(pageNumber);
+
+        int currentPageNumber=page.getNumber()+1;
+        int beginIndex=Math.max(1, currentPageNumber-6);
+        int endIndex=Math.min(beginIndex+10, page.getTotalPages());
 
 
 
+        List<Product> products=new ArrayList<>();
 
 
+
+        for (Product product : page) {
+            products.add(product);
+        }
 
         model.addAttribute("products",products);
-        model.addAttribute("totalPages",1);
-        model.addAttribute("currentPageNumber",1);
-        model.addAttribute("beginIndex",1);
-        model.addAttribute("endIndex",1);
+        model.addAttribute("totalPages",page.getTotalPages());
+        model.addAttribute("currentPageNumber",currentPageNumber);
+        model.addAttribute("beginIndex",beginIndex);
+        model.addAttribute("endIndex",endIndex);
 
         return "productInventory";
     }
@@ -72,24 +82,31 @@ public class AdminController implements HandlerExceptionResolver {
 
 
 
-    @RequestMapping(value="/productManagement/search/{pageNumber}",method= RequestMethod.POST)
+    @RequestMapping(value="/productManagement/search/{pageNumber}",method=RequestMethod.POST)
     public String productSearch(@RequestParam("searchTerm")String searchTerm,@PathVariable Integer pageNumber,Model model){
 
 
-        List<Product> products=productService.getAllProductByBrandOrModelOrCategory(pageNumber, searchTerm);
+        Page<Product> page=productService.getAllProductByBrandOrModelOrCategory(pageNumber, searchTerm);
 
-        int currentPageNumber=1;
-        int beginIndex=1;
-        int endIndex=1;
+        int currentPageNumber=page.getNumber()+1;
+        int beginIndex=Math.max(1, currentPageNumber-6);
+        int endIndex=Math.min(beginIndex+10, page.getTotalPages());
 
 
 
+        List<Product> products=new ArrayList<>();
+
+
+
+        for (Product product : page) {
+            products.add(product);
+        }
 
         model.addAttribute("products",products);
-        model.addAttribute("totalPages",1);
-        model.addAttribute("currentPageNumber",1);
-        model.addAttribute("beginIndex",1);
-        model.addAttribute("endIndex",1);
+        model.addAttribute("totalPages",page.getTotalPages());
+        model.addAttribute("currentPageNumber",currentPageNumber);
+        model.addAttribute("beginIndex",beginIndex);
+        model.addAttribute("endIndex",endIndex);
 
         model.addAttribute("search","search");
         return "productInventory";
@@ -173,11 +190,11 @@ public class AdminController implements HandlerExceptionResolver {
 
 
 
-        List<CustomerContact> page=customerContactService.getAllCustomerMessage(pageNumber);
+        Page<CustomerContact> page=customerContactService.getAllCustomerMessage(pageNumber);
 
-        int currentPageNumber=1;
-        int beginIndex=1;
-        int endIndex=1;
+        int currentPageNumber=page.getNumber()+1;
+        int beginIndex=Math.max(1, currentPageNumber-5);
+        int endIndex=Math.min(beginIndex+10, page.getTotalPages());
 
 
 
@@ -195,7 +212,7 @@ public class AdminController implements HandlerExceptionResolver {
         }
 
         model.addAttribute("customerContacts",customerContacts);
-        model.addAttribute("totalPages",1);
+        model.addAttribute("totalPages",page.getTotalPages());
         model.addAttribute("currentPageNumber",currentPageNumber);
         model.addAttribute("beginIndex",beginIndex);
         model.addAttribute("endIndex",endIndex);
@@ -233,4 +250,5 @@ public class AdminController implements HandlerExceptionResolver {
 
         return modelAndView;
     }
+
 }

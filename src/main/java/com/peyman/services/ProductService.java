@@ -1,30 +1,31 @@
 package com.peyman.services;
 
 import com.peyman.data.entities.Product;
-import com.peyman.models.ProductDTO;
-import org.springframework.stereotype.Service;
+import org.springframework.data.domain.Page;
 
-import java.sql.SQLException;
 import java.util.List;
-
 
 public interface ProductService {
 
-    void save(Product dto);
+	void addProduct(Product product);
+	
+	Page<Product> getAllProduct(Integer pageNumber);
+	
+	List<Product> getAllProduct();
+	
+	Product getProductById(long productId);
+	
+	void updateProduct(Product product);
+	
+	void deleteProduct(long productId);
+	
+	List<Product> getAllProductByCategory(String category);
+	
+	Page<Product> getAllProductByCategory(Integer pageNumber, String category);
 
-    List<Product> findAll();
+	Page<Product> getAllProductByBrandOrModel(Integer pageNumber, String searchTerm, String category);
 
-    void delete(long productId);
-
-    Product find(long productId);
-
-    List<Product> getAllProductsByBrandOrModelOrCategory(String searchTerm);
-
-    List<Product> getAllProductByCategory(int pageNumber, String productCategory);
-
-    List<Product> getAllProductByBrandOrModel(int pageNumber, String searchTerm, String productCategory);
-
-    List<Product> getAllProductByBrandOrModelOrCategory(Integer pageNumber, String searchTerm);
-
-    void update(Product dto) throws SQLException;
+	Page<Product> getAllProductByBrandOrModelOrCategory(Integer pageNumber, String searchTerm);
+	
+	
 }

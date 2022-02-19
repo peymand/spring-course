@@ -1,5 +1,6 @@
 package com.peyman.config;
 
+import com.peyman.validators.ProductFormValidator;
 import org.apache.log4j.Logger;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.InjectionPoint;
@@ -98,4 +99,11 @@ public class WebConfig implements WebMvcConfigurer {
         resolver.setMaxUploadSize(5*1024*1024); //5MB
         return resolver;
     }
+
+
+    @Bean
+    public ProductFormValidator productFormValidator(){
+        return new ProductFormValidator();
+    }
+
 }

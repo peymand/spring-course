@@ -1,25 +1,28 @@
 package com.peyman.data;
 
 import com.peyman.data.entities.Product;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import java.sql.SQLException;
 import java.util.List;
 
 @Repository
-public interface ProductDao extends JpaRepository<Product , Long> {
+
+public interface ProductDao extends JpaRepository<Product, Long> {
+
+	List<Product> findAllProductsByproductCategory(String productCategory);
+	
+	Page<Product> findAllProductByproductCategory(String productCategory, Pageable pageable);
 
 
-    //Method Query
+	@Query("SELECT t FROM Product t WHERE t.productCategory = :category AND t.productModel LIKE %:searchTerm%  OR  t.productCategory = :category AND t.productBrand LIKE %:searchTerm%")
+    Page<Product> findAllProductByBrandOrModel(@Param("searchTerm") String searchTerm, @Param("category") String category, Pageable pageable);
 
-    List<Product> findAllProductByProductCategory(String productCategory);
 
-    List<Product> findAllByProductNameAndProductBrand(String name, String brand);
-
-    @Query("SELECT p from Product p WHERE p.productBrand like %:searchTerm% OR p.productModel like %:searchTerm% AND p.productCategory = :category")
-    List<Product> findAllProductByBrandOrModel(@Param("searchTerm") String brand , @Param("category")String category);
-
+	@Query("SELECT t FROM Product t WHERE t.productCategory = :searchTerm OR t.productModel LIKE %:searchTerm%  OR   t.productBrand LIKE %:searchTerm%")
+    Page<Product> findAllProductByBrandOrModelorCategory(@Param("searchTerm") String searchTerm, Pageable pageable);
 }

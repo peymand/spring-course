@@ -4,6 +4,8 @@ package com.peyman.services;
 import com.peyman.data.CustomerContactDao;
 import com.peyman.data.entities.CustomerContact;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -34,12 +36,25 @@ public class CustomerContactServiceImpl implements CustomerContactService {
 	@Override
 	public List<CustomerContact> getAllCustomerContact() {
 		
-		return  customerContactDao.findAll();
+		return (List<CustomerContact>) customerContactDao.findAll();
 	}
 	@Transactional(readOnly = true)
 	@Override
-	public List<CustomerContact> getAllCustomerMessage(Integer pageNumber) {
-		return customerContactDao.findAll();
+	public Page<CustomerContact> getAllCustomerMessage(Integer pageNumber) {
+		
+		
+		PageRequest pageRequest=PageRequest.of(pageNumber-1, PAGE_ELEMENT_SIZE);
+		
+		
+		
+		
+		return customerContactDao.findAll(pageRequest);
 	}
 
-	}
+	
+
+	
+
+
+
+}

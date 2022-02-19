@@ -9,6 +9,9 @@ import lombok.extern.log4j.Log4j;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -26,8 +29,7 @@ import java.util.Locale;
 
 @Controller
 @RequestMapping("/product")
-public class ProductController  implements HandlerExceptionResolver {
-
+public class ProductController  implements HandlerExceptionResolver{
 
     @Autowired
     private ProductService productService;
@@ -35,22 +37,29 @@ public class ProductController  implements HandlerExceptionResolver {
     @ResponseBody
     @GetMapping(value = "/getImage/{productId}", produces = "image/jpeg")
     public byte[] getProductImage(@PathVariable("productId") long productId) {
-        Product product = productService.find(productId);
+        Product product = productService.getProductById(productId);
         return product.getImg();
     }
+
 
     @RequestMapping("/productList/{productCategory}/{pageNumber}")
     public String getProductByCategory(@PathVariable("pageNumber")int pageNumber,@PathVariable("productCategory")String productCategory,Model model){
 
-        List<Product> products;
-        if(productCategory.equalsIgnoreCase("all"))
-            products = productService.findAll();
-        else
-            products = productService.getAllProductByCategory(pageNumber, productCategory);
 
 
+        Page<Product> page=productService.getAllProductByCategory(pageNumber, productCategory);
 
 
+        List<Product> products=new ArrayList<>();
+
+        for (Product product : page) {
+            products.add(product);
+        }
+
+
+        int currentPageNumber=page.getNumber()+1;
+        int beginIndex=Math.max(1, currentPageNumber-5);
+        int endIndex=Math.min(beginIndex+10, page.getTotalPages());
 
         if (products.size()==0) {
             model.addAttribute("msg","No product to show");
@@ -58,10 +67,10 @@ public class ProductController  implements HandlerExceptionResolver {
 
         model.addAttribute("products",products);
         model.addAttribute("productCategory",productCategory);
-        model.addAttribute("totalPages",1);
-        model.addAttribute("currentPageNumber",1);
-        model.addAttribute("beginIndex",1);
-        model.addAttribute("endIndex",1);
+        model.addAttribute("totalPages",page.getTotalPages());
+        model.addAttribute("currentPageNumber",currentPageNumber);
+        model.addAttribute("beginIndex",beginIndex);
+        model.addAttribute("endIndex",endIndex);
 
 
         return "productList";
@@ -78,21 +87,29 @@ public class ProductController  implements HandlerExceptionResolver {
 
 
 
-        List<Product> products=productService.getAllProductByBrandOrModel(pageNumber, searchTerm, productCategory);
+        Page<Product> page=productService.getAllProductByBrandOrModel(pageNumber, searchTerm, productCategory);
 
+        List<Product> products=new ArrayList<>();
+
+        for (Product product : page) {
+            products.add(product);
+        }
 
         if (products.size()==0) {
             model.addAttribute("msg","No product to show");
         }
 
+        int currentPageNumber=page.getNumber()+1;
+        int beginIndex=Math.max(1, currentPageNumber-5);
+        int endIndex=Math.min(beginIndex+10, page.getTotalPages());
 
 
         model.addAttribute("products",products);
         model.addAttribute("productCategory",productCategory);
-        model.addAttribute("totalPages",1);
-        model.addAttribute("currentPageNumber",1);
-        model.addAttribute("beginIndex",1);
-        model.addAttribute("endIndex",1);
+        model.addAttribute("totalPages",page.getTotalPages());
+        model.addAttribute("currentPageNumber",currentPageNumber);
+        model.addAttribute("beginIndex",beginIndex);
+        model.addAttribute("endIndex",endIndex);
 
 
         return "productList";
@@ -106,7 +123,7 @@ public class ProductController  implements HandlerExceptionResolver {
     @RequestMapping("/productList")
     public String getAllProduct(Model model){
 
-        List<Product> products=productService.findAll();
+        List<Product> products=productService.getAllProduct();
         model.addAttribute("products",products);
 
 
@@ -118,7 +135,7 @@ public class ProductController  implements HandlerExceptionResolver {
     @RequestMapping("/viewProduct/{productId}")
     public String ProductDetailPage(@PathVariable("productId")long productId, Model model){
 
-        Product product=productService.find(productId);
+        Product product=productService.getProductById(productId);
 
 
         model.addAttribute("product",product);

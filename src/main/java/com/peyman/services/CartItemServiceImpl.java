@@ -49,7 +49,7 @@ public class CartItemServiceImpl implements CartItemService{
 	@Override
 	public CartItem getCartItemByProduct(long productId) {
 		
-		List<CartItem> cartItems=cartItemDao.findUserByProduct(productService.find(productId));
+		List<CartItem> cartItems=cartItemDao.findUserByProduct(productService.getProductById(productId));
 		
 		return cartItems.get(0);
 	}

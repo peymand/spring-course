@@ -2,6 +2,7 @@ package com.peyman.services;
 
 
 import com.peyman.data.entities.CustomerContact;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 
@@ -14,6 +15,6 @@ public interface CustomerContactService {
 	public List<CustomerContact> getAllCustomerContact();
 	
 	
-	List<CustomerContact> getAllCustomerMessage(Integer pageNumber);
+	Page<CustomerContact> getAllCustomerMessage(Integer pageNumber);
 	
 }
