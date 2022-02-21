@@ -81,32 +81,39 @@ public class AdminController implements HandlerExceptionResolver{
 
 
 
-
+//
     @RequestMapping(value="/productManagement/search/{pageNumber}",method=RequestMethod.POST)
     public String productSearch(@RequestParam("searchTerm")String searchTerm,@PathVariable Integer pageNumber,Model model){
 
 
-        Page<Product> page=productService.getAllProductByBrandOrModelOrCategory(pageNumber, searchTerm);
+//        Page<Product> page=productService.getAllProductByBrandOrModelOrCategory(pageNumber, searchTerm);
+          List<Product> products=productService.getAllProductByBrandOrModelOrCategory (searchTerm);
 
-        int currentPageNumber=page.getNumber()+1;
-        int beginIndex=Math.max(1, currentPageNumber-6);
-        int endIndex=Math.min(beginIndex+10, page.getTotalPages());
+//        int currentPageNumber=page.getNumber()+1;
+//        int beginIndex=Math.max(1, currentPageNumber-6);
+//        int endIndex=Math.min(beginIndex+10, page.getTotalPages());
+//
+//
+//
+//        List<Product> products=new ArrayList<>();
+//
+//
+//
+//        for (Product product : page) {
+//            products.add(product);
+//        }
 
-
-
-        List<Product> products=new ArrayList<>();
-
-
-
-        for (Product product : page) {
-            products.add(product);
-        }
+//        model.addAttribute("products",products);
+//        model.addAttribute("totalPages",page.getTotalPages());
+//        model.addAttribute("currentPageNumber",currentPageNumber);
+//        model.addAttribute("beginIndex",beginIndex);
+//        model.addAttribute("endIndex",endIndex);
 
         model.addAttribute("products",products);
-        model.addAttribute("totalPages",page.getTotalPages());
-        model.addAttribute("currentPageNumber",currentPageNumber);
-        model.addAttribute("beginIndex",beginIndex);
-        model.addAttribute("endIndex",endIndex);
+        model.addAttribute("totalPages",1);
+        model.addAttribute("currentPageNumber",1);
+        model.addAttribute("beginIndex",1);
+        model.addAttribute("endIndex",1);
 
         model.addAttribute("search","search");
         return "productInventory";

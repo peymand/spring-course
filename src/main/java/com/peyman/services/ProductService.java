@@ -26,6 +26,6 @@ public interface ProductService {
 	Page<Product> getAllProductByBrandOrModel(Integer pageNumber, String searchTerm, String category);
 
 	Page<Product> getAllProductByBrandOrModelOrCategory(Integer pageNumber, String searchTerm);
-	
-	
+
+	public List<Product> getAllProductByBrandOrModelOrCategory(String searchTerm);
 }

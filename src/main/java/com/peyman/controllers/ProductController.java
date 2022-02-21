@@ -81,35 +81,43 @@ public class ProductController  implements HandlerExceptionResolver{
 
 
 
+//
+    @RequestMapping(value="/productList/{pageNumber}",method=RequestMethod.POST)
+    public String getProductBySearch(@RequestParam("searchTerm")String searchTerm,@PathVariable("pageNumber")int pageNumber,Model model){
 
-    @RequestMapping(value="/productList/{productCategory}/{pageNumber}",method=RequestMethod.POST)
-    public String getProductBySearch(@RequestParam("searchTerm")String searchTerm,@PathVariable("pageNumber")int pageNumber,@PathVariable("productCategory")String productCategory,Model model){
 
 
+//        Page<Product> page=productService.getAllProductByBrandOrModel(pageNumber, searchTerm, productCategory);
+        List<Product> products=productService.getAllProductByBrandOrModelOrCategory (searchTerm);
 
-        Page<Product> page=productService.getAllProductByBrandOrModel(pageNumber, searchTerm, productCategory);
-
-        List<Product> products=new ArrayList<>();
-
-        for (Product product : page) {
-            products.add(product);
-        }
+//        List<Product> products=new ArrayList<>();
+//
+//        for (Product product : page) {
+//            products.add(product);
+//        }
 
         if (products.size()==0) {
             model.addAttribute("msg","No product to show");
         }
 
-        int currentPageNumber=page.getNumber()+1;
-        int beginIndex=Math.max(1, currentPageNumber-5);
-        int endIndex=Math.min(beginIndex+10, page.getTotalPages());
+//        int currentPageNumber=page.getNumber()+1;
+//        int beginIndex=Math.max(1, currentPageNumber-5);
+//        int endIndex=Math.min(beginIndex+10, page.getTotalPages());
 
+
+//        model.addAttribute("products",products);
+//        model.addAttribute("productCategory",productCategory);
+//        model.addAttribute("totalPages",page.getTotalPages());
+//        model.addAttribute("currentPageNumber",currentPageNumber);
+//        model.addAttribute("beginIndex",beginIndex);
+//        model.addAttribute("endIndex",endIndex);
 
         model.addAttribute("products",products);
-        model.addAttribute("productCategory",productCategory);
-        model.addAttribute("totalPages",page.getTotalPages());
-        model.addAttribute("currentPageNumber",currentPageNumber);
-        model.addAttribute("beginIndex",beginIndex);
-        model.addAttribute("endIndex",endIndex);
+        model.addAttribute("productCategory",1);
+        model.addAttribute("totalPages",1);
+        model.addAttribute("currentPageNumber",1);
+        model.addAttribute("beginIndex",1);
+        model.addAttribute("endIndex",1);
 
 
         return "productList";
