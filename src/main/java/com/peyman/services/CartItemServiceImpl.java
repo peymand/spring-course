@@ -41,7 +41,7 @@ public class CartItemServiceImpl implements CartItemService{
 		List<CartItem> cartItems = cart.getCartItems();
 
         for (CartItem item : cartItems){
-           deleteCartItem(item);
+			cartItemDao.deleteCartItemById(item.getCartItemId());
         }
 		
 	}
