@@ -26,7 +26,7 @@ public class CustomerServiceImpl implements CustomerService{
 			String pass=customer.getPassword();
 			customer.setPassword(passwordEncoder.encode(pass));
 		}
-		customerDao.save(customer);
+		customerDao.saveAndFlush(customer);
 	}
 
 	@Transactional(readOnly = true)

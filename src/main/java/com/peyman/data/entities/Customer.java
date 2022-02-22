@@ -48,12 +48,12 @@ public class Customer implements Serializable {
 	private boolean enabled;
 	
 	@Valid
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL , fetch = FetchType.EAGER)
 	@JoinColumn(name="shippingAddressId")
 	private ShippingAddress  shippingAddress; 
 	
 	@Valid
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL , fetch = FetchType.EAGER)
 	@JoinColumn(name="billingAddressId")
 	private BillingAddress billingAddress  ; 
 	

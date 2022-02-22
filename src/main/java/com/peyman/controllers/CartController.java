@@ -36,7 +36,7 @@ public class CartController implements HandlerExceptionResolver {
 	    public String getCart(@AuthenticationPrincipal User activeUser){
 	    	Customer customer = customerService.findCustomerByUsername(activeUser.getUsername());
 //	        long cartId = customer.getCart().getCartId();
-			Cart cart =cartService.getCartById(customer.getCustomerId());
+			Cart cart =cartService.getCartByCustomerId(customer.getCustomerId());
 			long cartId = cart.getCartId();
 
 	        return "redirect:/customer/cart/" + cartId;

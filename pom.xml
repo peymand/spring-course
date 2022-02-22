@@ -165,6 +165,13 @@
             <version>1.4</version>
         </dependency>
 
+        <!-- Spring web Flow -->
+        <dependency>
+            <groupId>org.springframework.webflow</groupId>
+            <artifactId>spring-webflow</artifactId>
+            <version>2.5.1.RELEASE</version>
+        </dependency>
+
 
     </dependencies>
 

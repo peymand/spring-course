@@ -26,13 +26,19 @@ public class CartServiceImpl implements CartService{
 		
 		
 	}
-	@Transactional(readOnly = true)
+
 	@Override
 	public Cart getCartById(long cartId) {
+		return cartDao.findById(cartId).get();
+	}
+
+	@Transactional(readOnly = true)
+	@Override
+	public Cart getCartByCustomerId(long customerId) {
 	   
 		
 		
-		return cartDao.findById(cartId).get();
+		return cartDao.findCartByCustomer_CustomerId(customerId);
 	}
 	@Transactional(readOnly = true)
 	@Override

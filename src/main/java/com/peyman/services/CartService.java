@@ -11,5 +11,7 @@ public interface CartService {
 	
 	public Cart getCartById(long cartId);
 
+	public Cart getCartByCustomerId(long customerId);
+
 	Cart validateCustomer(long cartId) throws IOException;
 }
