@@ -105,11 +105,18 @@ public class ProductServiceImpl implements ProductService {
 	@Transactional(readOnly = true)
 	@Override
 	public Page<Product> getAllProductByBrandOrModelOrCategory(Integer pageNumber, String searchTerm) {
-		
+
 		Pageable pageable=createPageRequest(pageNumber-1, PAGE_ELEMENT_SIZE_ADMIN);
-		
-		
-		return productDao.findAllProductByBrandOrModelorCategory(searchTerm, pageable);
+
+
+		return productDao.findAllProductByProductBrandOrProductModelOrProductCategory(searchTerm, pageable);
+	}
+
+	@Transactional(readOnly = true)
+	@Override
+	public List<Product> getAllProductByBrandOrModelOrCategory(String searchTerm) {
+
+		return productDao.findAllProductByProductBrandOrProductModelOrProductCategory(searchTerm);
 	}
 
 	

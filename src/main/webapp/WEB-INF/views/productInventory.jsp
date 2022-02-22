@@ -27,10 +27,10 @@
 	        
 		         <div class="searchBox">
 		         
-		            <form class="form-inline" action="<c:url value="/admin/productManagement/search/1" />" method="post">
+		            <form class="form-inline" action="<c:url value="/admin/productManagement/search/1?${_csrf.parameterName}=${_csrf.token}" />" method="post">
 					    <div class="form-group">
 					        <label  for="inputEmail">Search more product  :</label>
-					        <input type="text" name="searchTerm" class="form-control" style="width:300px"  id="inputEmail" placeholder="Enter Brand , model or  category name">
+					        <input type="text" name="searchTerm" class="form-control" style="width:300px"  id="inputEmail" placeholder="Enter Brand , model or  category ">
 					    </div>
 					    <input type="hidden"  value="category" name="search">
 					    <button type="submit" class="btn btn-primary">Search Product</button>
