@@ -12,7 +12,7 @@
            <div class="page-header title">
               <h1>Order</h1>
               
-              <p class="lead">Order ,customer and product list</p>
+              <p class="lead">Order confirmation</p>
            </div>
          
          
@@ -22,7 +22,7 @@
            
            
          
-	            <form:form  commandName="order" class="form-horizontal" >
+	            <form:form  modelAttribute="order" class="form-horizontal" >
 		        
 			          <div class="well col-xs-10 col-sm-10 col-md-6 col-xs-offset-1 col-sm-offset-1 col-md-offset-3">
 			          
@@ -54,7 +54,9 @@
 			                   </address>
 			               </div>
 			               
-			              
+			              <div class="col-xs-6 col-sm-6 col-md-6 text-right">
+                                <p>Shipping Date: <fmt:formatDate type="date" value="${now}" /></p>
+                            </div>
 			               
 			            </div>
 			            
@@ -109,7 +111,6 @@
 			                  
 			                    <c:forEach var="cartItem" items="${order.cart.cartItems}">
 			                     <tr>
-			                       
 			                         <td class="col-md-9">  <em>${cartItem.product.productName}</em>  </td>
 			                         <td class="col-md-1" style="text-align:center">  ${cartItem.quantity}  </td>
 			                         <td class="col-md-1" style="text-align:center">  ${cartItem.product.productPrice}  </td>
@@ -138,7 +139,15 @@
 			            
 			            
 			            
-			                       
+			            <!-- _flowExecutionKey =indicate this is part of our work flow -->
+			            <input type="hidden" name="_flowExecutionKey">
+			            
+			             <br/><br/>
+			             
+			              <button  class="btn btn-default" name="_eventId_backToCollectShippingDetail">Back</button>
+			             <!-- -eventId_customerInfoCollected = transaction result when clicked -->
+			             <input type="submit" value="Submit Order" class="btn btn-default" name="_eventId_orderConfirmed">
+			             <button  class="btn btn-default" name="_eventId_cancel">Cancel</button>              
 			           </div>  
 		        </form:form>
 	     </div>   

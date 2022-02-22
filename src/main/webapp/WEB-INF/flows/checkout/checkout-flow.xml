@@ -2,21 +2,70 @@
 <flow xmlns="http://www.springframework.org/schema/webflow"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.springframework.org/schema/webflow
-                          http://www.springframework.org/schema/webflow/spring-webflow.xsd">
+        http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+
+    <!-- declare a var to store  com.touhid.model.CustomerOrder-->
 
     <var name="order" class="com.peyman.data.entities.CustomerOrder"/>
-    <on-start>
-        <evaluate expression="cartServiceImpl.validateCustomer(requestParameter.cartId)"/>
-    </on-start>
+
+
+    <!-- add cart to CustomerOrder using requestParameter cartId-->
+
     <action-state id="addCartToOrder">
-        <evaluate expression="cartServiceImpl.validateCustomer(requestParameter.cartId)" result="order.cart"/>
+        <evaluate expression="cartServiceImpl.validateCustomer(requestParameters.cartId)" result="order.cart" />
+        <transition to="InvalidCartWarning" on-exception="java.io.IOException"/>
         <transition to="collectCustomerInfo" />
-        <transition on-exception="java.io.IOException" to="InvalidCartWarning"/>
     </action-state>
 
+
+
     <view-state id="collectCustomerInfo" view="collectCustomerInfo.jsp" model="order">
+        <transition on="customerInfoCollected" to="collectShippingDetail" />
 
     </view-state>
 
+
+    <view-state id="collectShippingDetail" view="collectShippingDetail.jsp" model="order">
+        <transition on="shippingDetailCollected" to="orderConfirmation" />
+        <transition on="backToCollectCustomerInfo" to="collectCustomerInfo" />
+    </view-state>
+
+
+    <!-- default view orderConfirmation.jsp -->
+    <view-state id="orderConfirmation" >
+        <transition on="orderConfirmed" to="processOrder" />
+        <transition on="backToCollectShippingDetail" to="collectShippingDetail" />
+    </view-state>
+
+
+
+    <action-state id="processOrder">
+        <evaluate expression="customerOrderServiceImpl.addCustomerOrder(order)" />
+        <transition to="thankCustomer" />
+
+    </action-state>
+
+
+    <view-state id="thankCustomer" model="order">
+        <transition to="endState" />
+    </view-state>
+
+
+
+
+    <view-state id="InvalidCartWarning" >
+        <transition to="endState" />
+    </view-state>
+
+
+    <view-state id="endState" />
+
+    <end-state id="cancelCheckout"  view="checkoutCancelled.jsp"/>
+
+    <!-- if any of the state return cancel then... -->
+
+    <global-transitions>
+        <transition on="cancel" to="cancelCheckout" />
+    </global-transitions>
 
 </flow>

@@ -161,10 +161,10 @@
 			    </div>
 				
 				<div class="form-group has-success">
-					<label class="col-xs-3 control-label" for="billingAddress.strretName">Street Name:</label>
+					<label class="col-xs-3 control-label" for="billingAddress.streetName">Street Name:</label>
 					<div class="col-xs-9">
 						
-					   <form:input path="billingAddress.streetName"   class="form-control" placeholder="Enter Street Name" id="billingAddress.strretName" />
+					   <form:input path="billingAddress.streetName"   class="form-control" placeholder="Enter Street Name" id="billingAddress.streetName" />
 					</div>
 				</div>
 				
@@ -278,10 +278,10 @@
 			    </div>
 				
 				<div class="form-group has-success">
-					<label class="col-xs-3 control-label" for="shippingAddress.strretName">Street Name:</label>
+					<label class="col-xs-3 control-label" for="shippingAddress.streetName">Street Name:</label>
 					<div class="col-xs-9">
 						
-					   <form:input path="shippingAddress.streetName"    class="form-control" placeholder="Enter Street Name" id="shippingAddress.strretName" />
+					   <form:input path="shippingAddress.streetName"    class="form-control" placeholder="Enter Street Name" id="shippingAddress.streetName" />
 					</div>
 				</div>
 				
