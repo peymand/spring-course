@@ -8,8 +8,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -37,6 +39,26 @@ public class EmployeeController {
     public Employee addEmployee(@RequestBody Employee employee){
         employeeService.save(employee);
         return employee;
+    }
+
+    @PutMapping("/employees")
+    @ResponseStatus(code = HttpStatus.ACCEPTED)
+    public Employee updateEmployee(@RequestBody Employee employee){
+        employeeService.save(employee);
+        return employee;
+    }
+
+    @DeleteMapping("/employees/{id}")
+    public ResponseEntity<String> deleteEmployee(@PathVariable long id){
+        try {
+            Employee theEmployee = employeeService.findById(id);
+        }catch (RuntimeException e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Employee Not Found", e);
+        }
+        employeeService.deleteById(id);
+        HttpHeaders headers = new HttpHeaders();
+//        headers.add(HttpHeaders.CONTENT_TYPE , MediaType.APPLICATION_JSON_VALUE);
+        return new ResponseEntity<>("deleted" , headers ,HttpStatus.OK);
     }
 
 }

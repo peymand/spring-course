@@ -11,4 +11,8 @@ public interface EmployeeService {
     Page<Employee> findAll(Pageable pageable);
 
     void save(Employee employee);
+
+    void deleteById(long id);
+
+    Employee findById(long id);
 }
