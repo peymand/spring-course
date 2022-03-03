@@ -4,6 +4,9 @@ package com.peyman.onlineshop.controllers;
 import com.peyman.onlineshop.entity.Employee;
 import com.peyman.onlineshop.sevice.EmployeeService;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
@@ -17,16 +20,19 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api")
-@AllArgsConstructor
+//@AllArgsConstructor
+@Slf4j
 public class EmployeeController {
 
-
+    @Value("${user.name.custom}")
+    private String value;
+    @Autowired
     private EmployeeService employeeService;
 
     @GetMapping("/employees")
     public ResponseEntity<Page<Employee>> getAll(Pageable pageable){
         Page<Employee> employees = employeeService.findAll(pageable);
-
+        log.info(value);
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.add("dummy", "dymmy");
         httpHeaders.add(HttpHeaders.CONTENT_LOCATION, "xyz");
