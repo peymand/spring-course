@@ -10,12 +10,16 @@ import com.peyman.services.CartItemService;
 import com.peyman.services.CartService;
 import com.peyman.services.CustomerService;
 import com.peyman.services.ProductService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -25,7 +29,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/rest/cart")
-public class CartItemController  implements HandlerExceptionResolver {
+public class CartItemController {
 
 	@Autowired
 	CartService cartService;
@@ -40,13 +44,20 @@ public class CartItemController  implements HandlerExceptionResolver {
 	@Autowired
 	CartItemService cartItemService;
 	//GET CART FOR REST SERVICE
-	@ResponseBody
+	@ApiOperation(value = "find cart by Id", response = Cart.class , produces = MediaType.APPLICATION_JSON_VALUE )
 	@GetMapping("/{cartId}")
-	public
-	Cart getCartById(@PathVariable("cartId")int cartId){
-		
-		return cartService.getCartById(cartId);
+	public Cart getCartById(@PathVariable("cartId")int cartId){
+		Cart cart = null;
+		try{
+		  cart = cartService.getCartById(cartId);
+		}catch (RuntimeException e){
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Id is not available", e);
+		}
+
+		return cart;
 	}
+
+
 
 
 	//REMOVE CART/CLEAR CART
@@ -129,35 +140,18 @@ public class CartItemController  implements HandlerExceptionResolver {
 	
 	@ExceptionHandler(IllegalArgumentException.class)
 	@ResponseStatus(value= HttpStatus.INTERNAL_SERVER_ERROR,reason="")
-	public void handleClientErrors(Exception e){}
+	public void handleClientErrors(Exception e){
+
+	}
 	
 	
 	@ExceptionHandler(Exception.class)
 	@ResponseStatus(value= HttpStatus.BAD_REQUEST,reason="Illegal request,please verify your payload")
 	public void handleServerErrors(Exception e){}
-	
-	
-	
-	
-	
-	
-	public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, Object handler,
-										 Exception ex) {
-		ModelAndView modelAndView=new ModelAndView();
-		CustomError error=new CustomError();
-	
-		if (ex instanceof IllegalArgumentException) {
-			
-			error.setMessage("Internal server error");
-			modelAndView.addObject("customError", error);
-			modelAndView.setViewName("error_page");
-			return  modelAndView;
-			
-		}
-		error.setMessage("Your request is not valid.Please Enter a valid request.");
-		modelAndView.addObject("customError", error);
-		modelAndView.setViewName("error_page");
-		
-		return modelAndView;
-	}
+
+    @ExceptionHandler(RuntimeException.class)
+    @ResponseStatus(value= HttpStatus.NOT_FOUND,reason="Id is is not found")
+    public void handleNotFoundErrors(RuntimeException e){
+
+    }
 }

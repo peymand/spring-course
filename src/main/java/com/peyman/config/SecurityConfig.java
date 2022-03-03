@@ -43,7 +43,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/admin/**").access("hasRole('ADMIN')")
-//                .antMatchers("/customer/**").access("hasRole('USER')")
+                .antMatchers("/customer/**").access("hasRole('USER')")
+                .antMatchers("/swagger-ui.html").anonymous()
                 .and()
                 .logout().logoutSuccessUrl("/login?logout")
                 .and()

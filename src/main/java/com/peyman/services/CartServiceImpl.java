@@ -29,7 +29,7 @@ public class CartServiceImpl implements CartService{
 
 	@Override
 	public Cart getCartById(long cartId) {
-		return cartDao.findById(cartId).get();
+		return cartDao.findById(cartId).orElseThrow(()-> new RuntimeException());
 	}
 
 	@Transactional(readOnly = true)
